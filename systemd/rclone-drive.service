@@ -5,7 +5,6 @@ After=network-online.target
 
 [Service]
 Type=notify
-KillMode=none
 RestartSec=5
 ExecStart=/usr/bin/rclone mount mega:Audio/music /mnt/music \
 # This is for allowing users other than the user running rclone access to the mount
