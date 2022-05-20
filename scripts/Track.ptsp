@@ -1,0 +1,12 @@
+title: Track
+description: ""
+author: ''
+license: ''
+version: ''
+last_updated: 2022-05-20 07:37:03 UTC
+script_language_version: '1.1'
+script: |
+  $replace($if2(%albumartist%,%artist%)/
+  $if(%albumartist%,%album%/,)
+  $if($gt(%totaldiscs%,1),$if($gt(%totaldiscs%,9),$num(%discnumber%,2),%discnumber%)-,)$if($and(%albumartist%,%tracknumber%),$num(%tracknumber%,2) ,)%title%,:,)
+id: de8a1019-565d-4658-b246-7be848935cb3
