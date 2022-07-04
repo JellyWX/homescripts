@@ -1,0 +1,29 @@
+version: "2"
+services:
+    openvpn-client:
+        image: yacht7/openvpn-client
+        container_name: openvpn-client
+        cap_add:
+            - NET_ADMIN
+        environment: 
+            - KILL_SWITCH=on
+            - FORWARDED_PORTS=56802
+            - SUBNETS=192.168.0.0/24,192.168.1.0/24
+        devices:
+            - /dev/net/tun                      
+        volumes:
+            - ./mullvad_config_linux_gb_mnc:/data/vpn   
+        ports:
+            - 2234:2234
+            - 6080:6080
+        restart: unless-stopped
+    nicotine:
+        image: nicotine
+        container_name: nicotine
+        volumes:
+            - ./nicotine:/root/.nicotine
+            - ./Music:/root/nicotine-downloads
+        network_mode: service:openvpn-client
+        depends_on:
+            - openvpn-client
+        restart: unless-stopped

@@ -1,2 +1,5 @@
 .DS_Store
 .vscode
+mullvad_config_linux*
+Music
+docker/compose/nicotine
